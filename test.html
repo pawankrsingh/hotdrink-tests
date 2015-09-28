@@ -1,0 +1,27 @@
+<html>
+<head>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+   			 var url = 'http://autocomplete.wunderground.com/aq?format=JSON&query=';
+   			 var query;
+    	$('button').click(function() {
+        query = $("#query").val();
+        $.getJSON(url + query + '&cb=callbackfunc', function(json) 
+        		{
+	            $.each(json.results, function(i, location) 
+	            	{ $("#results").append('<p>' + location.name + '</p>'); });
+				});
+			});
+		});​
+		</script>
+
+</head>
+
+<body>
+	
+<div id="results"></div>
+
+</body>
+
+</html>
