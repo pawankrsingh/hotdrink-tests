@@ -1,37 +1,76 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-		<script type="text/javascript" src="hotdrink.min.js"></script>
-		<script type="text/javascript" src="custom.js"></script>
-		
-		<style>
-				.fixed-height {
-					padding: 1px;
-					max-height: 200px;
-					overflow: auto;
-				}
-		</style>
-	</head>
-	<body>
-		<br/><br/><br/>
-		<table>
-			<tr>
-				<td>
-					<div class="ui-widget">
-						<label for="tags">With HD: </label>
-						<input id="locationTextWithHd" type="text" data-bind="hd.edit(keyword), { mkview: AutoComplete, model: list}" size="50"/>
-					</div>
-				</td>
-				<td>&emsp;&emsp;</td>
-				<td>
-					<div class="ui-widget">
-						<label for="tags">Without HD: </label>
-						<input id="locationTextWithoutHd" type="text" size="50"/>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</body>
+  <head>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <script type="text/javascript" src="hotdrink.min.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
+
+    <style type="text/css">
+      .fixed-height {
+      padding: 1px;
+      max-height: 200px;
+      overflow: auto;
+      }
+      .ac {
+          width: 200pt;
+          border: 1px solid black;
+          font-size: 12pt;
+      }
+      .scroll {
+          width: 200pt;
+          height: 180pt;
+          overflow-y: auto;
+          border: 1px solid black;
+      }
+      .menu {
+          width: 200pt;
+          border-collapse: collapse;
+      }
+      .menu td {
+          border-color: black;
+          border-style: solid none;
+          border-width: 1px;
+      }
+      .menu td.on {
+          background-color: #026;
+          color: #fff;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <br/><br/><br/>
+    <table>
+      <tr>
+	<td>
+	  <div class="ui-widget">
+	    <label for="tags">With HD: </label>
+	    <input id="locationTextWithHd" type="text" data-bind="hd.edit(keyword), { mkview: AutoCompleteHd, model: list}" size="50"/>
+	  </div>
+	</td>
+	<td>&emsp;&emsp;</td>
+	<td>
+	  <label for="tags">Without HD: </label>
+        </td>
+        <td>
+	  <input class="ac" id="query-no-hd" type="text"/>
+	</td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td>
+          <div class="scroll">
+            <table id="menu-no-hd" class="menu">
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+        </td>
+        <td id="result-no-hd"></td>
+      </tr>
+    </table>
+  </body>
 </html>
