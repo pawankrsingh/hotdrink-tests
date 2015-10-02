@@ -1,0 +1,52 @@
+<html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function ($) {
+    var i;
+    var out;
+    var arr = [];
+
+    $('#autocomplete').keyup(function () {
+        var value = $(this).val();
+
+        $.ajax({
+            url: "http://autocomplete.wunderground.com/aq?cb=call=?",
+            dataType: "jsonp",
+            data: {
+                "query": value
+            },
+            crossDomain: true,
+            success: function (parsed_json) {
+                var c = $.each(parsed_json.RESULTS, function (i, item) {
+                    out = (parsed_json.RESULTS[i].name);
+                    arr.push(out);
+
+                });
+                $("#autocomplete").autocomplete({
+                    source: arr
+
+                });
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+
+        });
+    });
+
+
+});
+</script>
+
+<body>
+	<div class="ui-widget">
+    <label for="autocomplete">Select a City:</label>
+    <input id="autocomplete">
+</div>
+</body>
+
+</html>
